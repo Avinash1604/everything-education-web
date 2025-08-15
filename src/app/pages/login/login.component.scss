@@ -1,0 +1,104 @@
+body {
+  background-color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+.form-control {
+  /* responsive height and consistent box sizing */
+  height: clamp(44px, 4vh, 56px);
+  padding-left: 15px;
+  padding-right: 0.75rem;
+  background-color: #f7f7f7;
+  border: none;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border: 1px solid #ccc;
+}
+
+.btn-danger {
+  background-color: #ff0000;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Use a responsive box width and padding */
+.login-box {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  width: clamp(300px, 40vw, 420px); /* min 300, preferred 40vw, max 420 */
+  padding: clamp(1rem, 2.5vw, 2rem);
+  box-sizing: border-box;
+}
+
+/* Make inputs and button sizing responsive */
+.login-box .form-control,
+.login-box .btn {
+  padding: clamp(0.5rem, 0.9vh, 0.75rem);
+  font-size: clamp(0.95rem, 1.4vw, 1rem);
+}
+
+/* Slightly smaller heading on narrow screens, larger on medium */
+.login-box h2 {
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+/* Eye icon spacing */
+.login-box .position-absolute {
+  font-size: 1rem;
+}
+
+/* Ensure .form-group used for inputs with icons is positioned relative */
+.form-group.position-relative {
+  position: relative;
+}
+
+/* Reserve space on the right when an icon is present so text doesn't overlap */
+.form-group.position-relative .form-control {
+  padding-right: clamp(2.2rem, 2.5vw, 3rem); /* scales with viewport */
+}
+
+/* Position the icon inside the input at the right, vertically centered */
+.form-group.position-relative .position-absolute {
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* icon won't block input interactions */
+  color: rgba(0, 0, 0, 0.45);
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+}
+
+/* Very large screens: keep form compact */
+@media (min-width: 1400px) {
+  .login-box {
+    width: 420px;
+    padding: 1.25rem;
+  }
+  .login-box .form-control,
+  .login-box .btn {
+    padding: 0.6rem;
+    font-size: 0.98rem;
+  }
+}

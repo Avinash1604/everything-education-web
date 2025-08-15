@@ -1,0 +1,51 @@
+<div class="position-absolute top-0 start-0 m-3">
+  <img src="assets/logo.svg" alt="Logo" style="height: 48px;">
+</div>
+
+<div class="container vh-100 d-flex flex-column justify-content-center align-items-center">
+  <h3 class="mb-4 fw-bold text-center">Create your account</h3>
+
+  <div class="register-container">
+    <div class="register-box">
+      <form (ngSubmit)="register()" #registerForm="ngForm" novalidate class="w-100">
+        <!-- First Name -->
+        <div class="mb-3 form-group">
+          <input id="firstName" name="firstName" type="text" required [(ngModel)]="firstName"
+            placeholder="First name" class="form-control rounded-pill">
+        </div>
+
+        <!-- Last Name -->
+        <div class="mb-3 form-group">
+          <input id="lastName" name="lastName" type="text" required [(ngModel)]="lastName"
+            placeholder="Last name" class="form-control rounded-pill">
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3 form-group">
+          <input id="email" name="email" type="email" required [(ngModel)]="email"
+            placeholder="you@example.com" class="form-control rounded-pill">
+        </div>
+
+        <!-- DOB -->
+        <div class="mb-3 form-group">
+          <input id="dob" name="dob" type="date" required [(ngModel)]="dob"
+            placeholder="Date of birth" class="form-control rounded-pill">
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3 form-group">
+          <input id="password" name="password" type="password" required [(ngModel)]="password"
+            placeholder="Password" class="form-control rounded-pill">
+        </div>
+
+        <!-- Token (optional, hidden or visible as needed) -->
+        <input id="token" name="token" type="hidden" [(ngModel)]="token">
+
+        <button type="submit" [disabled]="registerForm.invalid" class="btn btn-danger w-100 rounded-pill mb-3">Register</button>
+        <div class="text-center mt-3">
+          Already have an account? <a href="/login" class="text-primary">Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
