@@ -4,13 +4,13 @@ import { NotificationService, Notification } from '../../services/notification.s
 import { SessionService } from '../../services/session.service';
 
 @Component({
-  selector: 'app-notifications',
+  selector: 'app-announcements',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.scss']
+  templateUrl: './announcements.component.html',
+  styleUrls: ['./announcements.component.scss']
 })
-export class NotificationsComponent implements OnInit {
+export class AnnouncementsComponent implements OnInit {
   notifications: Notification[] = [];
   selectedNotification: Notification | null = null;
 

@@ -1,5 +1,5 @@
 <div class="container py-5">
-  <h1>Notifications</h1>
+  <h1>Announcements</h1>
   <ul class="list-group">
     <li *ngFor="let notification of notifications" class="list-group-item" (click)="openNotification(notification)" [class.list-group-item-secondary]="notification.read">
       {{ notification.name }}

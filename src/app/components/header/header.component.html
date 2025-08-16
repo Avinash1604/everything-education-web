@@ -15,7 +15,7 @@
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
-          [attr.aria-label]="notificationCount > 0 ? notificationCount + ' new notifications' : 'Notifications'"
+          [attr.aria-label]="notificationCount > 0 ? notificationCount + ' new announcements' : 'Announcements'"
         >
           <i class="bi bi-bell"></i>
         </button>
@@ -28,16 +28,16 @@
         </span>
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-notifs shadow">
-          <li class="dropdown-header fw-semibold">Notifications</li>
+          <li class="dropdown-header fw-semibold">Announcements</li>
           <li><hr class="dropdown-divider" /></li>
           <li *ngFor="let notification of notifications">
-            <a class="dropdown-item" href="#" (click)="openNotification(notification)" [class.fw-bold]="!notification.read">
+            <a class="dropdown-item" (click)="openNotification(notification)" [class.fw-bold]="!notification.read">
               {{ notification.name }}
             </a>
           </li>
-          <li *ngIf="notifications.length === 0"><span class="dropdown-item-text">No new notifications</span></li>
+          <li *ngIf="notifications.length === 0"><span class="dropdown-item-text">No new announcements</span></li>
           <li><hr class="dropdown-divider" /></li>
-          <li><a class="dropdown-item text-primary" routerLink="/notifications">View all</a></li>
+          <li><a class="dropdown-item text-primary" routerLink="/announcements">View all</a></li>
         </ul>
       </div>
 
@@ -66,7 +66,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li *ngFor="let section of sections; let i = index">
               <h6 class="dropdown-header">{{ section }}</h6>
-              <a *ngFor="let item of items[i]" class="dropdown-item" href="#">{{ item }}</a>
+              <a *ngFor="let item of items[i]" class="dropdown-item">{{ item }}</a>
               <hr *ngIf="i < sections.length - 1" class="dropdown-divider">
             </li>
           </ul>
