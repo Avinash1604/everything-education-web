@@ -39,6 +39,11 @@
   text-align: center;
 }
 
+.field-error {
+  color: #d9534f;
+  font-size: 0.85rem;
+}
+
 @media (min-width: 1400px) {
   .register-box {
     width: 480px;

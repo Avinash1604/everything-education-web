@@ -1,0 +1,27 @@
+<div class="container py-5">
+  <h1>Notifications</h1>
+  <ul class="list-group">
+    <li *ngFor="let notification of notifications" class="list-group-item" (click)="openNotification(notification)" [class.list-group-item-secondary]="notification.read">
+      {{ notification.name }}
+    </li>
+  </ul>
+</div>
+
+<!-- Notification Modal -->
+<div class="modal" tabindex="-1" [style.display]="selectedNotification ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ selectedNotification?.name }}</h5>
+        <button type="button" class="btn-close" (click)="closeNotificationModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{ selectedNotification?.text }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeNotificationModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show" *ngIf="selectedNotification"></div>

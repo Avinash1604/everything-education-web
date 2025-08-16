@@ -1,0 +1,21 @@
+<div class="position-absolute top-0 start-0 m-3">
+  <img src="assets/logo.svg" alt="Logo" style="height: 48px;">
+</div>
+
+<div class="otp-container">
+  <h3>Enter OTP</h3>
+  <p *ngIf="infoMessage" class="text-info">{{ infoMessage }}</p>
+  <div *ngIf="generalError" class="alert alert-danger">{{ generalError }}</div>
+
+  <div class="mb-3">
+    <input name="otp" type="text" [(ngModel)]="otp" placeholder="OTP" class="form-control rounded-pill" />
+  </div>
+
+  <div class="d-flex gap-2">
+    <button class="btn btn-outline-secondary flex-grow-1" (click)="resendOtp()" [disabled]="resendDisabled">
+      <span *ngIf="!resendDisabled">Resend OTP</span>
+      <span *ngIf="resendDisabled">Resend in {{ timer }}s</span>
+    </button>
+    <button class="btn btn-danger flex-grow-1" (click)="submitOtp()">Submit</button>
+  </div>
+</div>

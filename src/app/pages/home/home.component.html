@@ -1,0 +1,52 @@
+<!-- Hero / question -->
+<header class="container py-4 py-lg-5">
+  <h1 class="display-6 display-md-5 fw-bold lh-sm">
+    What subject do you want to improve today?
+  </h1>
+</header>
+
+<!-- Subjects grid -->
+<main class="container pb-5">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+    <div class="col" *ngFor="let s of subjects">
+      <article
+        class="card h-100 shadow-sm rounded-4 subject-card"
+        [class.subject-card--disabled]="s.comingSoon"
+        role="button"
+        tabindex="0"
+        (click)="openSubject(s)"
+        (keyup.enter)="openSubject(s)"
+        [attr.aria-disabled]="s.comingSoon ? true : null"
+      >
+        <div class="card-body p-4 d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start">
+            <h2 class="h4 fw-bold mb-3">{{ s.title }}</h2>
+            <i class="bi bi-arrow-right-circle fs-4"></i>
+          </div>
+
+          <!-- Illustration / image -->
+          <div class="ratio ratio-16x9 mb-3">
+            <img
+              [src]="s.image"
+              class="rounded-3 object-fit-contain"
+              [alt]="s.title + ' illustration'"
+              onerror="this.style.display='none'"
+            />
+          </div>
+
+          <!-- Coming soon pill -->
+          <div *ngIf="s.comingSoon" class="mt-auto">
+            <span class="badge text-bg-danger-subtle border border-danger-subtle px-3 py-2">
+              Coming soon
+            </span>
+          </div>
+        </div>
+
+        <!-- Disabled overlay -->
+        <div *ngIf="s.comingSoon" class="subject-card__overlay rounded-4">
+          <span class="visually-hidden">Coming soon</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</main>

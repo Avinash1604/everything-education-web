@@ -1,0 +1,119 @@
+<!-- Sticky top navbar -->
+<nav class="navbar navbar-expand-md bg-white border-bottom sticky-top">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <img src="assets/logo.svg" alt="Everything Education" height="28" />
+    </a>
+
+    <!-- Right controls (mobile) -->
+    <div class="d-flex align-items-center gap-2 order-md-2">
+      <!-- Notifications -->
+      <div class="position-relative">
+        <button
+          class="btn btn-outline-dark rounded-circle p-2"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          [attr.aria-label]="notificationCount > 0 ? notificationCount + ' new notifications' : 'Notifications'"
+        >
+          <i class="bi bi-bell"></i>
+        </button>
+        <span
+          *ngIf="notificationCount > 0"
+          class="position-absolute translate-middle badge rounded-pill bg-danger top-0 start-100"
+        >
+          {{ notificationCount }}
+          <span class="visually-hidden">unread notifications</span>
+        </span>
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-notifs shadow">
+          <li class="dropdown-header fw-semibold">Notifications</li>
+          <li><hr class="dropdown-divider" /></li>
+          <li *ngFor="let notification of notifications">
+            <a class="dropdown-item" href="#" (click)="openNotification(notification)" [class.fw-bold]="!notification.read">
+              {{ notification.name }}
+            </a>
+          </li>
+          <li *ngIf="notifications.length === 0"><span class="dropdown-item-text">No new notifications</span></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li><a class="dropdown-item text-primary" routerLink="/notifications">View all</a></li>
+        </ul>
+      </div>
+
+      <!-- Navbar toggler -->
+      <button
+        class="navbar-toggler ms-1"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNav"
+        aria-controls="mainNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <!-- Nav links -->
+    <div class="collapse navbar-collapse order-md-1" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-md-center gap-md-2">
+        <li class="nav-item"><a class="nav-link" routerLink="/home">Subjects</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Settings
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let section of sections; let i = index">
+              <h6 class="dropdown-header">{{ section }}</h6>
+              <a *ngFor="let item of items[i]" class="dropdown-item" href="#">{{ item }}</a>
+              <hr *ngIf="i < sections.length - 1" class="dropdown-divider">
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-md-3">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle d-flex align-items-center gap-2"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="bi bi-person-circle fs-4"></i>
+            <span class="d-none d-md-inline">Profile</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end shadow">
+            <li class="dropdown-item-text">Hi, {{ userName }}</li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" routerLink="/profile">My Profile</a></li>
+            <li><a class="dropdown-item" routerLink="/settings">Settings</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item text-danger" routerLink="/logout">Sign out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Notification Modal -->
+<div class="modal" tabindex="-1" [style.display]="selectedNotification ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ selectedNotification?.name }}</h5>
+        <button type="button" class="btn-close" (click)="closeNotificationModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{ selectedNotification?.text }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeNotificationModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show" *ngIf="selectedNotification"></div>

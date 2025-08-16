@@ -90,6 +90,12 @@ a:hover {
   font-size: clamp(0.95rem, 1.4vw, 1.05rem);
 }
 
+/* inline field error style */
+.field-error {
+  color: #d9534f; /* bootstrap danger */
+  font-size: 0.85rem;
+}
+
 /* Very large screens: keep form compact */
 @media (min-width: 1400px) {
   .login-box {

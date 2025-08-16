@@ -6,12 +6,20 @@
   
   <div class="login-container">
     <div class="login-box">
-      <form (ngSubmit)="login()" #loginForm="ngForm" novalidate class="w-100">
+      <form (ngSubmit)="login()" #loginForm="ngForm" novalidate class="w-100" style="max-width: 320px;">
+        <div *ngIf="generalError" class="alert alert-danger mb-3">{{ generalError }}</div>
+
         <div class="mb-3 form-group">
-          <input id="email" name="email" type="email" required [(ngModel)]="email" placeholder="you@example.com" class="form-control rounded-pill">
+          <input id="email" name="email" type="email" required [(ngModel)]="email"
+            placeholder="you@example.com" class="form-control rounded-pill"
+            (ngModelChange)="emailError=''; generalError=''">
+          <div *ngIf="emailError" class="field-error mt-1">{{ emailError }}</div>
         </div>
         <div class="mb-3 form-group position-relative">
-          <input id="password" name="password" type="password" required [(ngModel)]="password" placeholder="Password" class="form-control rounded-pill">
+          <input id="password" name="password" type="password" required [(ngModel)]="password"
+            placeholder="Password" class="form-control rounded-pill"
+            (ngModelChange)="passwordError=''; generalError=''">
+          <div *ngIf="passwordError" class="field-error mt-1">{{ passwordError }}</div>
           <span class="position-absolute top-50 end-0 translate-middle-y me-3">
             <i class="bi bi-eye-slash"></i>
           </span>

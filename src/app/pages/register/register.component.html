@@ -7,39 +7,57 @@
 
   <div class="register-container">
     <div class="register-box">
-      <form (ngSubmit)="register()" #registerForm="ngForm" novalidate class="w-100">
+      <form (ngSubmit)="register()" #registerForm="ngForm" novalidate class="w-100" style="max-width: 320px;">
+        <div *ngIf="generalError" class="alert alert-danger mb-3">{{ generalError }}</div>
+
         <!-- First Name -->
         <div class="mb-3 form-group">
           <input id="firstName" name="firstName" type="text" required [(ngModel)]="firstName"
-            placeholder="First name" class="form-control rounded-pill">
+            placeholder="First name" class="form-control rounded-pill" (ngModelChange)="firstNameError=''; generalError=''">
+          <div *ngIf="firstNameError" class="field-error mt-1">{{ firstNameError }}</div>
         </div>
 
         <!-- Last Name -->
         <div class="mb-3 form-group">
           <input id="lastName" name="lastName" type="text" required [(ngModel)]="lastName"
-            placeholder="Last name" class="form-control rounded-pill">
+            placeholder="Last name" class="form-control rounded-pill" (ngModelChange)="lastNameError=''; generalError=''">
+          <div *ngIf="lastNameError" class="field-error mt-1">{{ lastNameError }}</div>
         </div>
 
         <!-- Email -->
         <div class="mb-3 form-group">
           <input id="email" name="email" type="email" required [(ngModel)]="email"
-            placeholder="you@example.com" class="form-control rounded-pill">
+            placeholder="you@example.com" class="form-control rounded-pill" (ngModelChange)="emailError=''; generalError=''">
+          <div *ngIf="emailError" class="field-error mt-1">{{ emailError }}</div>
         </div>
 
         <!-- DOB -->
         <div class="mb-3 form-group">
           <input id="dob" name="dob" type="date" required [(ngModel)]="dob"
-            placeholder="Date of birth" class="form-control rounded-pill">
+            class="form-control rounded-pill" (ngModelChange)="dobError=''; generalError=''">
+          <div *ngIf="dobError" class="field-error mt-1">{{ dobError }}</div>
         </div>
 
         <!-- Password -->
         <div class="mb-3 form-group">
           <input id="password" name="password" type="password" required [(ngModel)]="password"
-            placeholder="Password" class="form-control rounded-pill">
+            placeholder="Password" class="form-control rounded-pill" (ngModelChange)="passwordError=''; generalError=''">
+          <div *ngIf="passwordError" class="field-error mt-1">{{ passwordError }}</div>
         </div>
 
-        <!-- Token (optional, hidden or visible as needed) -->
-        <input id="token" name="token" type="hidden" [(ngModel)]="token">
+        <!-- Confirm Password -->
+        <div class="mb-3 form-group">
+          <input id="confirmPassword" name="confirmPassword" type="password" required [(ngModel)]="confirmPassword"
+            placeholder="Confirm Password" class="form-control rounded-pill" (ngModelChange)="confirmPasswordError=''; generalError=''">
+          <div *ngIf="confirmPasswordError" class="field-error mt-1">{{ confirmPasswordError }}</div>
+        </div>
+
+        <!-- Consent checkbox (used if age below 13) -->
+        <div class="mb-3 form-group form-check">
+          <input id="consent" name="consent" type="checkbox" [(ngModel)]="consent" class="form-check-input" (ngModelChange)="consentError=''; generalError=''">
+          <label for="consent" class="form-check-label">I have parental consent (required if under 13)</label>
+          <div *ngIf="consentError" class="field-error mt-1">{{ consentError }}</div>
+        </div>
 
         <button type="submit" [disabled]="registerForm.invalid" class="btn btn-danger w-100 rounded-pill mb-3">Register</button>
         <div class="text-center mt-3">
